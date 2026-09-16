@@ -6,42 +6,67 @@
     <title>LAPD Simulator - Links</title>
     <style>
         body {
-            background-color: #0d1117;
+            background-color: #0b0f19;
             color: #c9d1d9;
             font-family: 'Courier New', Courier, monospace;
             max-width: 600px;
-            margin: 60px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 50px 20px;
             text-align: center;
         }
-        h1 { color: #58a6ff; }
-        p { color: #8b949e; }
+        h1 { color: #58a6ff; font-size: 1.6rem; margin-bottom: 10px; }
+        p.subtitle { color: #8b949e; font-size: 0.9rem; margin-bottom: 40px; }
         .link-box {
-            display: block;
-            background: #161b22;
-            border: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111622;
+            border: 1px solid #21262d;
             color: #58a6ff;
-            padding: 15px;
-            margin: 15px 0;
+            padding: 16px 20px;
+            margin: 14px 0;
             border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
-            transition: 0.2s;
+            transition: all 0.2s ease;
         }
         .link-box:hover {
-            background: #30363d;
-            border-color: #8b949e;
+            background: #161b22;
+            border-color: #58a6ff;
+            transform: translateY(-2px);
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { color: #58a6ff; }
+        footer {
+            border-top: 1px solid #30363d;
+            margin-top: 60px;
+            padding-top: 20px;
+            color: #8b949e;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
-    <h1>// LINKS</h1>
-    
+    <h1>// SYSTEM_LINKS</h1>
+    <p class="subtitle">Direct routing to official project nodes.</p>
+
     <div id="links-container">
-        <p>Loading links...</p>
+        <p style="color: #8b949e;">[Loading route table...]</p>
     </div>
 
-    <a class="link-box" href="index.html">📄 Back to Devblog</a>
+    <div>
+        <a class="back-link" href="index.html">&lt; Return to Devblog</a>
+    </div>
+
+    <footer>
+        &copy; 2026 NEXTSTARS & NEXTSTARS DEVELOPMENT. All rights reserved.
+    </footer>
 
     <script>
         fetch('devlog.json')
@@ -56,12 +81,12 @@
                     a.className = 'link-box';
                     a.href = url;
                     a.target = '_blank';
-                    a.textContent = key.toUpperCase();
+                    a.innerHTML = `<span>> ${key.toUpperCase()}</span><span>&#8599;</span>`;
                     container.appendChild(a);
                 }
             })
             .catch(error => {
-                document.getElementById('links-container').innerHTML = '<p>Error loading links.</p>';
+                document.getElementById('links-container').innerHTML = '<p style="color: #f85149;">[Error: Failed to fetch links]</p>';
             });
     </script>
 </body>
