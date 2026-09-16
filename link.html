@@ -53,7 +53,7 @@
     </style>
 </head>
 <body>
-    <h1>// SYSTEM_LINKS</h1>
+    <h1>// LINKS</h1>
     <p class="subtitle">Official project links.</p>
 
     <div id="links-container">
@@ -69,7 +69,7 @@
     </footer>
 
     <script>
-        fetch('https://nextstars-development.github.io/lapdsimulator-devlog/devlog.json')
+        fetch('devlog.json')
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
