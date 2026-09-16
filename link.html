@@ -54,7 +54,7 @@
 </head>
 <body>
     <h1>// SYSTEM_LINKS</h1>
-    <p class="subtitle">Official project links.</p>
+    <p class="subtitle">Direct routing to official project nodes.</p>
 
     <div id="links-container">
         <p style="color: #8b949e;">[Loading route table...]</p>
@@ -69,8 +69,11 @@
     </footer>
 
     <script>
-        fetch('devlog.json')
-            .then(response => response.json())
+        fetch('https://nextstars-development.github.io/lapdsimulator-devlog/devlog.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
             .then(data => {
                 const container = document.getElementById('links-container');
                 container.innerHTML = '';
