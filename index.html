@@ -70,7 +70,7 @@
     </footer>
 
     <script>
-        fetch('./devlog.json')
+        fetch('https://nextstars-development.github.io/lapdsimulator-devlog/devlog.json')
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
