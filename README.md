@@ -1,4 +1,9 @@
-# Welcome to your organization's demo respository
-This code repository (or "repo") is designed to demonstrate the best GitHub has to offer with the least amount of noise.
+# LAPD-Simulator // Devblog
 
-The repo includes an `index.html` file (so it can render a web page), two GitHub Actions workflows, and a CSS stylesheet dependency.
+> **Official devblog.**
+
+## Useful Links
+* 🌐 **Devblog & News:** [GitHub Pages](https://nextstars-development.github.io/LAPD-Simulator/)
+* 🔗 **Link Hub:** [Redirection Page](./link.html)
+* 🎮 **Itch.io:** [nextstars.itch.io/lapd-simulator](https://nextstars.itch.io/lapd-simulator)
+* 💬 **Discord:** [Join the NextStars Server](https://discord.gg/24X4rc8f42)
