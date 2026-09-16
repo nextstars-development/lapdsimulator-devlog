@@ -6,63 +6,54 @@
     <title>LAPD Simulator - Devblog</title>
     <style>
         body {
-            background-color: #0b0f19;
-            color: #c9d1d9;
-            font-family: 'Courier New', Courier, monospace;
-            max-width: 800px;
+            background: #090d16;
+            color: #d1d5db;
+            font-family: monospace;
+            max-width: 700px;
             margin: 0 auto;
             padding: 40px 20px;
-            line-height: 1.6;
         }
         header {
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
         }
-        h1 { color: #58a6ff; font-size: 1.5rem; margin: 0; }
-        .nav-links a {
-            color: #8b949e;
-            text-decoration: none;
-            margin-left: 15px;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+        h1 { color: #38bdf8; font-size: 1.3rem; margin: 0; }
+        nav a { color: #9ca3af; text-decoration: none; margin-left: 10px; font-size: 0.85rem; }
+        nav a:hover { color: #38bdf8; }
+        .log-entry {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
         }
-        .nav-links a:hover { color: #58a6ff; }
-        .post {
-            background: #111622;
-            border: 1px solid #21262d;
-            border-left: 3px solid #58a6ff;
-            padding: 24px;
-            margin-bottom: 24px;
-            border-radius: 6px;
-        }
-        .post h2 { color: #58a6ff; margin-top: 0; font-size: 1.2rem; }
-        .date { color: #8b949e; font-size: 0.85rem; margin-bottom: 12px; font-style: italic; }
+        .log-entry h2 { color: #38bdf8; font-size: 1.1rem; margin-top: 0; }
+        .timestamp { color: #64748b; font-size: 0.8rem; margin-bottom: 10px; }
         footer {
             text-align: center;
-            border-top: 1px solid #30363d;
-            margin-top: 50px;
+            border-top: 1px solid #1f2937;
+            margin-top: 40px;
             padding-top: 20px;
-            color: #8b949e;
-            font-size: 0.8rem;
+            color: #64748b;
+            font-size: 0.75rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>> LAPD_SIMULATOR // DEVLOG</h1>
-        <div class="nav-links">
-            <a href="index.html">[Devblog]</a>
-            <a href="link.html">[Links]</a>
-        </div>
+        <h1>LAPD_SIMULATOR</h1>
+        <nav>
+            <a href="index.html">Devblog</a>
+            <a href="link.html">Links</a>
+        </nav>
     </header>
 
-    <main id="posts-container">
-        <p style="color: #8b949e;">[Loading deployment logs...]</p>
+    <main id="content">
     </main>
 
     <footer>
@@ -70,29 +61,26 @@
     </footer>
 
     <script>
-        fetch('devlog.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                const container = document.getElementById('posts-container');
-                container.innerHTML = '';
-                data.posts.forEach(post => {
-                    const postDiv = document.createElement('div');
-                    postDiv.className = 'post';
-                    postDiv.innerHTML = `
-                        <h2>${post.title}</h2>
-                        <div class="date">TIMESTAMP: ${post.date}</div>
-                        <p>${post.summary}</p>
-                    `;
-                    container.appendChild(postDiv);
-                });
-            })
-            .catch(error => {
-                document.getElementById('posts-container').innerHTML = '<p style="color: #f85149;">[Error: Failed to fetch devlogs]</p>';
-            });
-    </script>
+        const posts = [
+            {
+                "id": 1,
+                "title": "Project Initialization & 3D Setup",
+                "date": "2026-09-16",
+                "summary": "Godot Engine structure setup and official repository configuration."
+            }
+        ];
 
+        const container = document.getElementById('content');
+        container.innerHTML = '';
+        posts.forEach(p => {
+            container.innerHTML += `
+                <div class="log-entry">
+                    <h2>${p.title}</h2>
+                    <div class="timestamp">${p.date}</div>
+                    <p>${p.summary}</p>
+                </div>
+            `;
+        });
+    </script>
 </body>
 </html>
