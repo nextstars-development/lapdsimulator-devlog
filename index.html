@@ -24,19 +24,37 @@
 </head>
 <body>
 
-    <h1>> LAPD_Simulator // DEV_LOGS</h1>
-    <p>Official development tracking, code notes, and project progress.</p>
+    <h1>> LAPD_Simulator // DEVLOG</h1>
     
     <div class="nav-links">
-        [ <a href="link.html">Links & Network</a> ] - [ <a href="https://github.com/nextstars-development/LAPD-Simulator" target="_blank">GitHub Repository</a> ]
+        [ <a href="link.html">Links</a> ] - [ <a href="https://github.com/nextstars-development/LAPD-Simulator" target="_blank">GitHub</a> ]
     </div>
 
-    <div class="post">
-        <h2>Project Initialization & 3D Setup</h2>
-        <div class="date">Date: September 16, 2026</div>
-        <p>Godot Engine structure setup, configuration of the official repository under the <a href="https://github.com/nextstars-development" target="_blank">nextstars-development</a> organization, and creation of the devblog page.</p>
-        <p><strong>Next steps:</strong> 3D test floor integration, camera configuration, and script structuring.</p>
+    <div id="posts-container">
+        <p>Loading devlogs...</p>
     </div>
+
+    <script>
+        fetch('devlog.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('posts-container');
+                container.innerHTML = '';
+                data.posts.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'post';
+                    postDiv.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <div class="date">Date: ${post.date}</div>
+                        <p>${post.summary}</p>
+                    `;
+                    container.appendChild(postDiv);
+                });
+            })
+            .catch(error => {
+                document.getElementById('posts-container').innerHTML = '<p>Error loading devlogs.</p>';
+            });
+    </script>
 
 </body>
 </html>
