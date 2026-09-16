@@ -6,62 +6,48 @@
     <title>LAPD Simulator - Links</title>
     <style>
         body {
-            background-color: #0b0f19;
-            color: #c9d1d9;
-            font-family: 'Courier New', Courier, monospace;
-            max-width: 600px;
+            background: #090d16;
+            color: #d1d5db;
+            font-family: monospace;
+            max-width: 500px;
             margin: 0 auto;
             padding: 50px 20px;
             text-align: center;
         }
-        h1 { color: #58a6ff; font-size: 1.6rem; margin-bottom: 10px; }
-        p.subtitle { color: #8b949e; font-size: 0.9rem; margin-bottom: 40px; }
-        .link-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #111622;
-            border: 1px solid #21262d;
-            color: #58a6ff;
-            padding: 16px 20px;
-            margin: 14px 0;
-            border-radius: 6px;
+        h1 { color: #38bdf8; font-size: 1.4rem; margin-bottom: 5px; }
+        .subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 35px; }
+        .link-card {
+            display: block;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            color: #38bdf8;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.2s ease;
         }
-        .link-box:hover {
-            background: #161b22;
-            border-color: #58a6ff;
-            transform: translateY(-2px);
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            color: #8b949e;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .back-link:hover { color: #58a6ff; }
+        .link-card:hover { background: #1e293b; }
+        .back { display: inline-block; margin-top: 25px; color: #64748b; text-decoration: none; font-size: 0.85rem; }
+        .back:hover { color: #38bdf8; }
         footer {
-            border-top: 1px solid #30363d;
-            margin-top: 60px;
+            border-top: 1px solid #1f2937;
+            margin-top: 50px;
             padding-top: 20px;
-            color: #8b949e;
-            font-size: 0.8rem;
+            color: #64748b;
+            font-size: 0.75rem;
         }
     </style>
 </head>
 <body>
+
     <h1>// LINKS</h1>
     <p class="subtitle">Official project links.</p>
 
-    <div id="links-container">
-        <p style="color: #8b949e;">[Loading route table...]</p>
-    </div>
+    <div id="links"></div>
 
     <div>
-        <a class="back-link" href="index.html">&lt; Return to Devblog</a>
+        <a class="back" href="index.html">&lt; Return to Devblog</a>
     </div>
 
     <footer>
@@ -69,28 +55,18 @@
     </footer>
 
     <script>
-        fetch('devlog.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                const container = document.getElementById('links-container');
-                container.innerHTML = '';
-                
-                const links = data.links;
-                for (const [key, url] of Object.entries(links)) {
-                    const a = document.createElement('a');
-                    a.className = 'link-box';
-                    a.href = url;
-                    a.target = '_blank';
-                    a.innerHTML = `<span>> ${key.toUpperCase()}</span><span>&#8599;</span>`;
-                    container.appendChild(a);
-                }
-            })
-            .catch(error => {
-                document.getElementById('links-container').innerHTML = '<p style="color: #f85149;">[Error: Failed to fetch links]</p>';
-            });
+        const links = {
+            "itch.io": "https://nextstars.itch.io/lapd-simulator/",
+            "discord": "https://discord.gg/24X4rc8f42",
+            "github": "https://github.com/nextstars-development",
+            "website": "https://development.nextstars.com/lapd-simulator/"
+        };
+
+        const container = document.getElementById('links');
+        container.innerHTML = '';
+        for (const [name, url] of Object.entries(links)) {
+            container.innerHTML += `<a class="link-card" href="${url}" target="_blank">&gt; ${name.toUpperCase()}</a>`;
+        }
     </script>
 </body>
 </html>
