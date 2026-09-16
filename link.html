@@ -35,14 +35,34 @@
     </style>
 </head>
 <body>
-    <h1>// OFFICIAL_LINKS</h1>
-    <p>Quick access to all project platforms.</p>
+    <h1>// LINKS</h1>
+    
+    <div id="links-container">
+        <p>Loading links...</p>
+    </div>
 
-    <a class="link-box" href="https://nextstars.itch.io/lapd-simulator" target="_blank">🎮 Itch.io</a>
-    <a class="link-box" href="https://discord.gg/24X4rc8f42" target="_blank">💬 NextStars Discord Server</a>
-    <a class="link-box" href="https://github.com/nextstars-development/" target="_blank">💻 GitHub</a>
-    <a class="link-box" href="https://nextstars-development.github.io/lapdsimulator-devlog/" target="_blank">👨‍💻 DevLog</a>
-    <a class="link-box" href="https://development.nextstars.com" target="_blank">🌐 WebSite</a>
     <a class="link-box" href="index.html">📄 Back to Devblog</a>
+
+    <script>
+        fetch('devlog.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('links-container');
+                container.innerHTML = '';
+                
+                const links = data.links;
+                for (const [key, url] of Object.entries(links)) {
+                    const a = document.createElement('a');
+                    a.className = 'link-box';
+                    a.href = url;
+                    a.target = '_blank';
+                    a.textContent = key.toUpperCase();
+                    container.appendChild(a);
+                }
+            })
+            .catch(error => {
+                document.getElementById('links-container').innerHTML = '<p>Error loading links.</p>';
+            });
+    </script>
 </body>
 </html>
