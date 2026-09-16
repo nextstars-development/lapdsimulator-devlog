@@ -6,33 +6,68 @@
     <title>LAPD Simulator - Devblog</title>
     <style>
         body {
-            background-color: #0d1117;
+            background-color: #0b0f19;
             color: #c9d1d9;
             font-family: 'Courier New', Courier, monospace;
             max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 40px 20px;
             line-height: 1.6;
         }
-        h1, h2 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 5px; }
-        .post { background: #161b22; border: 1px solid #30363d; padding: 20px; margin-bottom: 20px; border-radius: 6px; }
-        .date { color: #8b949e; font-size: 0.9em; margin-bottom: 10px; }
-        .nav-links { margin-bottom: 30px; }
-        a { color: #58a6ff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        header {
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 { color: #58a6ff; font-size: 1.5rem; margin: 0; }
+        .nav-links a {
+            color: #8b949e;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #58a6ff; }
+        .post {
+            background: #111622;
+            border: 1px solid #21262d;
+            border-left: 3px solid #58a6ff;
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 6px;
+        }
+        .post h2 { color: #58a6ff; margin-top: 0; font-size: 1.2rem; }
+        .date { color: #8b949e; font-size: 0.85rem; margin-bottom: 12px; font-style: italic; }
+        footer {
+            text-align: center;
+            border-top: 1px solid #30363d;
+            margin-top: 50px;
+            padding-top: 20px;
+            color: #8b949e;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
-    <h1>> LAPD_Simulator // DEVLOG</h1>
-    
-    <div class="nav-links">
-        [ <a href="link.html">Links</a> ] - [ <a href="https://github.com/nextstars-development/LAPD-Simulator" target="_blank">GitHub</a> ]
-    </div>
+    <header>
+        <h1>> LAPD_SIMULATOR // DEVLOG</h1>
+        <div class="nav-links">
+            <a href="index.html">[Devblog]</a>
+            <a href="link.html">[Links]</a>
+        </div>
+    </header>
 
-    <div id="posts-container">
-        <p>Loading devlogs...</p>
-    </div>
+    <main id="posts-container">
+        <p style="color: #8b949e;">[Loading deployment logs...]</p>
+    </main>
+
+    <footer>
+        &copy; 2026 NEXTSTARS & NEXTSTARS DEVELOPMENT. All rights reserved.
+    </footer>
 
     <script>
         fetch('devlog.json')
@@ -45,14 +80,14 @@
                     postDiv.className = 'post';
                     postDiv.innerHTML = `
                         <h2>${post.title}</h2>
-                        <div class="date">Date: ${post.date}</div>
+                        <div class="date">TIMESTAMP: ${post.date}</div>
                         <p>${post.summary}</p>
                     `;
                     container.appendChild(postDiv);
                 });
             })
             .catch(error => {
-                document.getElementById('posts-container').innerHTML = '<p>Error loading devlogs.</p>';
+                document.getElementById('posts-container').innerHTML = '<p style="color: #f85149;">[Error: Failed to fetch devlogs]</p>';
             });
     </script>
 
